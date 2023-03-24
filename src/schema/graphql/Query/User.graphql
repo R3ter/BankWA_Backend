@@ -1,0 +1,17 @@
+type User {
+  passportNumber: String!
+  name: String!
+  role: String!
+  cash: Float!
+  credit: Float!
+  active: Boolean!
+}
+enum sortBy {
+  cash
+  credit
+  passportNumber
+}
+input filter {
+  starts: Float!
+  ends: Float!
+}

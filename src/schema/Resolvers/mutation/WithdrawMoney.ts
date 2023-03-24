@@ -1,0 +1,25 @@
+import UserModel from "../../../../models/UserModel";
+
+export default async (_, { userPassport, amount }) => {
+  if (amount < 0) {
+    return { result: false, msg: "amount cant be a negative number" };
+  }
+  const user = await UserModel.findOne({ passportNumber: userPassport });
+  if (!user) return { result: false, msg: "user was not found!" };
+
+  const over = user.cash - amount;
+
+  return await UserModel.updateOne(
+    { passportNumber: userPassport },
+    {
+      $inc: {
+        cash: over >= 0 ? -amount : -user.cash,
+        credit: over < 0 ? (user.credit > -over ? over : -user.credit) : 0,
+      },
+    }
+  )
+    .then(() => ({ result: true, msg: "User updated!" }))
+    .catch((e) => {
+      return { result: false, msg: "Unexpected error!" };
+    });
+};

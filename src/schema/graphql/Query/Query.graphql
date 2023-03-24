@@ -1,0 +1,4 @@
+type Query {
+  getAllUsers(sortBy: sortBy, filter: filter): [User]
+  getUserByPN(passportNumber: String): User
+}

@@ -1,0 +1,4 @@
+input loginData {
+  username: String
+  password: String
+}

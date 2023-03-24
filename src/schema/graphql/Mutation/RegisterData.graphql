@@ -1,0 +1,5 @@
+input RegisterData {
+  passportNumber: String!
+  password: String!
+  name: String!
+}

@@ -1,0 +1,8 @@
+type Mutation {
+  login(loginData: loginData): Credential!
+  addAccount(userData: RegisterData!): Credential!
+  Deposit(amount: Float!, userPassport: String!): ResultMsg!
+  editCredit(amount: Float!, userPassport: String!): ResultMsg!
+  WithdrawMoney(amount: Float!, userPassport: String!): ResultMsg!
+  Transfer(amount: Float!, from: String!, to: String!): ResultMsg!
+}
