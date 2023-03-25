@@ -12,6 +12,6 @@ enum sortBy {
   passportNumber
 }
 input filter {
-  starts: Float!
-  ends: Float!
+  starts: Float
+  ends: Float
 }

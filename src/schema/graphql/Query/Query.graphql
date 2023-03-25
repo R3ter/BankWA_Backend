@@ -1,4 +1,4 @@
 type Query {
-  getAllUsers(sortBy: sortBy, filter: filter): [User]
+  getAllUsers(sortBy: sortBy, filter: filter, onlyActive: Boolean): [User]
   getUserByPN(passportNumber: String): User
 }
