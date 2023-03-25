@@ -14,7 +14,7 @@ const userSchema = new mongoose_1.default.Schema({
                 if (value.length == 9)
                     return true;
             }
-            throw new Error("Passport number is not correct");
+            throw new Error("The passport number must consist of 9 digits and should not contain any letters or special characters.");
         },
     },
     name: {

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "compile": "npm i ",
     "start": "node ./dist/index.js",
     "dev": "npx nodemon ./index.ts"
@@ -23,7 +24,6 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.2",
     "npm": "^9.6.2",
-    "ts-node": "^10.9.1",
     "validator": "^13.9.0"
   },
   "devDependencies": {

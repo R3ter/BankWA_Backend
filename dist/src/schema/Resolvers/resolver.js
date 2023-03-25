@@ -7,6 +7,7 @@ const AddAccount_1 = __importDefault(require("./mutation/AddAccount"));
 const Deposit_1 = __importDefault(require("./mutation/Deposit"));
 const EditCredit_1 = __importDefault(require("./mutation/EditCredit"));
 const login_1 = __importDefault(require("./mutation/login"));
+const setUserActive_1 = __importDefault(require("./mutation/setUserActive"));
 const Transfer_1 = __importDefault(require("./mutation/Transfer"));
 const WithdrawMoney_1 = __importDefault(require("./mutation/WithdrawMoney"));
 const getAllUsers_1 = __importDefault(require("./query/getAllUsers"));
@@ -23,6 +24,7 @@ exports.default = {
         editCredit: EditCredit_1.default,
         WithdrawMoney: WithdrawMoney_1.default,
         Transfer: Transfer_1.default,
+        setUserActive: setUserActive_1.default,
     },
 };
 //# sourceMappingURL=resolver.js.map
