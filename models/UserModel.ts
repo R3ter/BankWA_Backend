@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
 
-interface IUser {
+export interface IUser {
   passportNumber: number;
   name: string;
   password: string;
@@ -19,7 +19,9 @@ const userSchema = new mongoose.Schema({
       if (!isNaN(value)) {
         if (value.length == 9) return true;
       }
-      throw new Error("Passport number is not correct");
+      throw new Error(
+        "The passport number must consist of 9 digits and should not contain any letters or special characters."
+      );
     },
   },
   name: {

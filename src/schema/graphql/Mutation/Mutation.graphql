@@ -5,4 +5,5 @@ type Mutation {
   editCredit(amount: Float!, userPassport: String!): ResultMsg!
   WithdrawMoney(amount: Float!, userPassport: String!): ResultMsg!
   Transfer(amount: Float!, from: String!, to: String!): ResultMsg!
+  setUserActive(userPassport: String!, active: Boolean!): Boolean!
 }

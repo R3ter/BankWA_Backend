@@ -6,22 +6,30 @@ import dotenv from "dotenv";
 import database from "./database";
 dotenv.config();
 
-database();
+database()
+  .then(() => {
+    console.log("database connected!");
+    const app = express();
 
-const app = express();
+    const yoga = createYoga({
+      context: async ({ req, res }: any) => {
+        return { req, res };
+      },
+      schema: createSchema({
+        typeDefs: loadFilesSync("src/schema/graphql/**/*.graphql"),
+        resolvers: Revolvers,
+      }),
+    });
 
-const yoga = createYoga({
-  context: async ({ req, res }: any) => {
-    return { req, res };
-  },
-  schema: createSchema({
-    typeDefs: loadFilesSync("src/schema/graphql/**/*.graphql"),
-    resolvers: Revolvers,
-  }),
-});
+    app.use("/graphql", yoga);
 
-app.use("/graphql", yoga);
-
-app.listen(4000, () => {
-  console.log("Running a GraphQL API server at http://localhost:4000/graphql");
-});
+    app.listen(4000, () => {
+      console.log(
+        "Running a GraphQL API server at http://localhost:4000/graphql"
+      );
+    });
+  })
+  .catch((e) => {
+    console.log("%c cannot connect to database!");
+    console.log(e);
+  });
