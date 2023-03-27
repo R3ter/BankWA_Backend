@@ -29,8 +29,10 @@ const userSchema = new mongoose.Schema({
     validate: (value) => {
       return !/[0-9]/.test(value);
     },
-    max: 30,
-    min: 3,
+    required: true,
+
+    maxlength: 50,
+    minlength: 4,
   },
   password: {
     type: String,
