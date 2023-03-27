@@ -1,11 +1,21 @@
 import { signToken } from "../../../../auth/Token";
 import UserModel from "../../../../models/UserModel";
-
+type AddAccountResult =
+  | {
+      token: string;
+      name: string;
+      error: boolean;
+      msg: string;
+    }
+  | {
+      error: boolean;
+      msg: string;
+    };
 export default async (
   _,
   { userData: { name, passportNumber, password } },
   context
-) => {
+): Promise<AddAccountResult> => {
   return await new UserModel({ name, passportNumber, password })
     .save()
     .then((e) => {
@@ -17,6 +27,7 @@ export default async (
           role: "User",
         }),
         name,
+        msg: "",
         error: false,
       };
     })
@@ -32,5 +43,6 @@ export default async (
           error: true,
           msg: error.errors[Object.keys(error.errors)[0]].message,
         };
+      console.log(error);
     });
 };

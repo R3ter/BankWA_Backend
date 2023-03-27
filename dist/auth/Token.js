@@ -12,13 +12,13 @@ const signToken = ({ username, name, id, role }) => {
     if (!username || !id) {
         throw new Error("data is not provided correctly");
     }
-    return jsonwebtoken_1.default.sign({ username, name, id, role }, process.env.SECRET);
+    return jsonwebtoken_1.default.sign({ username, name, id, role }, process.env.SECRET || "dwadawdwadadwdwaawd");
 };
 exports.signToken = signToken;
 const checkToken = (token, role = ["user"]) => {
     let decoded;
     try {
-        decoded = jsonwebtoken_1.default.verify(token, process.env.SECRET);
+        decoded = jsonwebtoken_1.default.verify(token, process.env.SECRET || "dwadawdwadadwdwaawd");
     }
     catch (e) {
         throw new Error("Token is not valid");

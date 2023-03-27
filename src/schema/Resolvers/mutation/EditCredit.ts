@@ -5,7 +5,9 @@ export default async (_, { userPassport, amount }) => {
   if (amount < 0) {
     return { result: false, msg: "amount cant be a negative number" };
   }
-  if (!await checkUserActive(userPassport))
+  const user = await UserModel.findOne({ passportNumber: userPassport });
+  if (!user) return { result: false, msg: "user was not found!" };
+  if (!(await checkUserActive(userPassport)))
     return { result: false, msg: "User is not active" };
   return await UserModel.updateOne(
     { passportNumber: userPassport },

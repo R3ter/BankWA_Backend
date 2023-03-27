@@ -17,6 +17,7 @@ exports.default = async (_, { userData: { name, passportNumber, password } }, co
                 role: "User",
             }),
             name,
+            msg: "",
             error: false,
         };
     })
@@ -32,6 +33,7 @@ exports.default = async (_, { userData: { name, passportNumber, password } }, co
                 error: true,
                 msg: error.errors[Object.keys(error.errors)[0]].message,
             };
+        console.log(error);
     });
 };
 //# sourceMappingURL=AddAccount.js.map

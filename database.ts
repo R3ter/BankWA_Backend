@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { env } from "process";
 
 export default async function () {
   console.log("connecting to database.....");

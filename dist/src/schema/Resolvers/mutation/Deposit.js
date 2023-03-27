@@ -9,7 +9,10 @@ exports.default = async (_, { userPassport, amount }) => {
     if (amount <= 0) {
         return { result: false, msg: "amount cant be negative or zero" };
     }
-    if (!await (0, checkUserActive_1.default)(userPassport))
+    const user = await UserModel_1.default.findOne({ passportNumber: userPassport });
+    if (!user)
+        return { result: false, msg: "user was not found!" };
+    if (!(await (0, checkUserActive_1.default)(user)))
         return { result: false, msg: "User is not active" };
     return await UserModel_1.default.updateOne({ passportNumber: userPassport }, {
         $inc: {
@@ -17,7 +20,7 @@ exports.default = async (_, { userPassport, amount }) => {
         },
     })
         .then((e) => {
-        if (e.matchedCount > 0)
+        if (e.modifiedCount > 0)
             return { result: true, msg: "user updated!" };
         return { result: false, msg: "user was not found!" };
     })
