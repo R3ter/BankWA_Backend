@@ -24,6 +24,10 @@ dotenv_1.default.config();
         }),
     });
     app.use("/graphql", yoga);
+    app.use("/", express_1.default.static("public"));
+    app.use((req, res, next) => {
+        res.sendFile("/public/index.html");
+    });
     app.listen(4000, () => {
         console.log("Running a GraphQL API server at http://localhost:4000/graphql");
     });
